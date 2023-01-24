@@ -12,14 +12,14 @@ while wrong <6:
         print("you win")
         break
     else:
-        gess=input().lower()
-        if gess in word:
+        guess=input().lower()
+        if guess in word:
             tempfill=word
             index=0
-            while gess in tempfill:
-                index+=tempfill.index(gess)+1
+            while guess in tempfill:
+                index+=tempfill.index(guess)+1
                 tempfill=word[index:]
-                fill[index-1]=gess
+                fill[index-1]=guess
         else:
             print("wrong!! try again")
             wrong+=1

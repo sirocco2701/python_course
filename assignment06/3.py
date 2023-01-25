@@ -17,7 +17,7 @@ def cubic(a,b,c,d):
 
 while True:
     a ,b,c,d= map(float,input().split())
-    if a == 0.0:
+    if a == float(0):
         print("a can not be 0")
     else:
         break

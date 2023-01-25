@@ -1,92 +1,89 @@
-import pyfiglet 
 import random
-#from termjor import jored
+from termcolor import colored
 import timeit
+import time
+
 
 def show():
-    for i in gameboard:
-        for cell in i:
-            print(cell, end=" ")
+    for i in q:
+        for j in i:
+            print(j, end=" ")
         print()
+    print("**********")
 
-def check_game():
-    x = False
-    for i , j in zip(range(0,3), range(0,3)):
-            if gameboard[i][0] == gameboard[i][1] == gameboard[i][2] != "_" or gameboard[0][j] == gameboard [1][j] == gameboard[2][j] != "_":
-                x = True
-    if x or gameboard[0][0] == gameboard[1][1] == gameboard[2][2] != "_" or gameboard[2][0] == gameboard[1][1] == gameboard[0][2] != "_":
-        print(winner, "wins!")
+def check_game(lastplayer):
+    if (q[0][0]==q[0][1]==q[0][2]!="_" or q[1][0]==q[1][1]==q[1][2]!="_" or q[2][0]==q[2][1]==q[2][2]!="_" or q[0][0]==q[1][0]==q[2][0]!="_" or q[0][1]==q[1][1]==q[2][1]!="_" or q[0][2]==q[1][2]==q[2][2]!="_"  or q[0][0]==q[1][1]==q[2][2]!="_"  or q[0][2]==q[1][1]==q[2][0]!="_"):
+        print(lastplayer+"win")
         stop = timeit.default_timer()
         print('Time: ', stop - start)
         exit()
-    elif not any("_" in i for i in gameboard):
-        print("Draw")
+    elif("_" not in str(sum(q, []))):
+        print("tie")
         stop = timeit.default_timer()
         print('Time: ', stop - start)
         exit()
-    
-title = pyfiglet.figlet_format("Tic Tak Toe", font = "slant")
 
-print(title)
-print("Welcome to Tic Tac Toe...")
-print("For palying with Computer Press 1  ")
-print("For Playing with Another Player Press 2 ")
-player2_type = int(input())
+def valid(x):
+    if x==0 or x==1 or x==2 :
+        return 1
+    else:
+        return 0  
 
-gameboard = l=[["_" for i in range(3)] for j in range(3)]
+playtype = int(input("Another Player: 1 \nComputer: 2"))
+start = timeit.default_timer()
+q =[["_" for i in range(3)] for j in range(3)]
+
 show()
 
-while True:
-    start = timeit.default_timer()
-    print("palyer 1: ")
+if playtype==1:
+    lastplayer="o"
+    while 1:
+        if lastplayer=="o":
+            x1,y1=map(int,input().split())
+            if valid(x1) and valid(y1)and q[x1][y1]=="_" :
+                q[x1][y1]=colored("x", "red")
+                show()
+                lastplayer="x"
+                check_game(lastplayer)
+            else:
+                print("not available chose again")
+                continue
+        if lastplayer=="x":
+            x2,y2=map(int,input().split())
+            if valid(x2) and valid(y2) and q[x2][y2]=="_":
+                q[x2][y2]=colored("o", "blue")
+                show()
+                lastplayer="o"
+                check_game(lastplayer)
+            elif(lastplayer=="x"):
+                print("not available chose again")
+                continue
     
-    while True:
-        i = int(input("i :"))
-        j = int(input("j :"))
-        
-        if 0 <= i <= 2 and 0 <= j <= 2:
-            if gameboard[i][j] == "_":
-                gameboard[i][j] = "X"
-                break
+
+
+else:
+    lastplayer="user"
+    while 1:
+        if lastplayer=="user":
+            x2=random.randint(0,2)
+            y2=random.randint(0,2)
+            if  valid(x2) and valid(y2) and q[x2][y2]=="_" :
+                q[x2][y2]=colored("o", "blue")
+                time.sleep(2)
+                show()
+                lastplayer="computer"
+                check_game(lastplayer)
             else:
-                print("This block has been chosen before. Try another one")
-        else:
-            print("You are just allowed to choose a number between 0 and 2")
-    show()
-    winner = "player 1"
-    check_game()
-
-    if player2_type == 2:
-        print("palyer 2: ")
-        
-        while True:
-            i = int(input("i :"))
-            j = int(input("j :"))
-            
-            if 0 <= i <= 2 and 0 <= j <= 2:
-                if gameboard[i][j] == "_":        
-                    gameboard[i][j] = "O"
-                    break
-                else: 
-                    print("This block has been chosen before. Try another one")
+                continue
+        if lastplayer=="computer":
+            x1,y1=map(int,input().split())
+            if  valid(x1) and valid(y1)and q[x1][y1]=="_":
+                q[x1][y1]=colored("x", "red")
+                show()
+                lastplayer="user"
+                check_game(lastplayer)
             else:
-                print("You are just allowed to choose a number between 0 and 2")
-
-        show()
-        winner = "player 2"
-        check_game()
-
-    elif player2_type == 1:
-        print("player 2: ")
-        while True:
-
-            i = random.randint(0 , 2)
-            j = random.randint(0 , 2)
-            
-            if gameboard[i][j] == "_":        
-                gameboard[i][j] = jored("O", "blue")
-                break
-
-        show()
-        winner = "Computer"
-        check_game()
+                print("not available chose again")
+            continue
+    
+print(q)

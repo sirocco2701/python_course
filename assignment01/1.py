@@ -45,7 +45,7 @@ elif op == "cos":
 elif op == "tan":
     result = math.tan(math.radians(a))
 elif op == "cot":
-    result = math.cot(math.radians(a))
+    result = 1/math.tan(math.radians(a))
 else:
     result = math.factorial(a)
 

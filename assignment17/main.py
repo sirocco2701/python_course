@@ -197,10 +197,11 @@ def num0():
         main_window.txt_box.setText(main_window.txt_box.text()+'0')
 
 def dec():
-    if main_window.txt_box.text()!='':
-         main_window.txt_box.setText(main_window.txt_box.text()+'.')
-    else:
-        main_window.txt_box.setText('0.')
+    if '.' not in main_window.txt_box.text():
+        if main_window.txt_box.text()!='':
+            main_window.txt_box.setText(main_window.txt_box.text()+'.')
+        else:
+            main_window.txt_box.setText('0.')
 
 main_window.sum.clicked.connect(sum)
 main_window.sub.clicked.connect(sub)

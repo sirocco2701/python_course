@@ -26,5 +26,5 @@ GUI calculator
 
 -clear all
 
-![alt text](https://github.com/sirocco2701/python_course/blob/main/assignment17/1.PNG?raw=true)
+![alt text](https://github.com/sirocco2701/python_course/blob/main/assignment17/2.PNG?raw=true)
 

@@ -1,3 +1,3 @@
 Gui tic tac toe
 
-![Screenshot](.\Capture.png)
+![Screenshot](.\Capture.PNG)

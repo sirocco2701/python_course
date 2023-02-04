@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QApplication
 from PySide6.QtUiTools import QUiLoader
+from functools import partial
 import math
 
 re=['0',"+"]
@@ -165,36 +166,8 @@ loader = QUiLoader()
 main_window = loader.load("main.ui")
 main_window.show()
 
-def num1():
-    main_window.txt_box.setText(main_window.txt_box.text()+'1')
-
-def num2():
-    main_window.txt_box.setText(main_window.txt_box.text()+'2')
-
-def num3():
-    main_window.txt_box.setText(main_window.txt_box.text()+'3')
-
-def num4():
-    main_window.txt_box.setText(main_window.txt_box.text()+'4')
-
-def num5():
-    main_window.txt_box.setText(main_window.txt_box.text()+'5')
-
-def num6():
-    main_window.txt_box.setText(main_window.txt_box.text()+'6')
-
-def num7():
-    main_window.txt_box.setText(main_window.txt_box.text()+'7')
-
-def num8():
-    main_window.txt_box.setText(main_window.txt_box.text()+'8')
-
-def num9():
-    main_window.txt_box.setText(main_window.txt_box.text()+'9')
-
-def num0():
-    if main_window.txt_box.text()!='0':
-        main_window.txt_box.setText(main_window.txt_box.text()+'0')
+def num(number):
+    main_window.txt_box.setText(main_window.txt_box.text()+number)
 
 def dec():
     if '.' not in main_window.txt_box.text():
@@ -218,16 +191,16 @@ main_window.pers.clicked.connect(pers)
 main_window.clr.clicked.connect(clr)
 main_window.allclr.clicked.connect(allclr)
 main_window.equal.clicked.connect(result)
-main_window.num1.clicked.connect(num1)
-main_window.num2.clicked.connect(num2)
-main_window.num3.clicked.connect(num3)
-main_window.num4.clicked.connect(num4)
-main_window.num5.clicked.connect(num5)
-main_window.num6.clicked.connect(num6)
-main_window.num7.clicked.connect(num7)
-main_window.num8.clicked.connect(num8)
-main_window.num9.clicked.connect(num9)
-main_window.num0.clicked.connect(num0)
+main_window.num1.clicked.connect(partial(num, "1"))
+main_window.num2.clicked.connect(partial(num, "2"))
+main_window.num3.clicked.connect(partial(num, "3"))
+main_window.num4.clicked.connect(partial(num, "4"))
+main_window.num5.clicked.connect(partial(num, "5"))
+main_window.num6.clicked.connect(partial(num, "6"))
+main_window.num7.clicked.connect(partial(num, "7"))
+main_window.num8.clicked.connect(partial(num, "8"))
+main_window.num9.clicked.connect(partial(num, "9"))
+main_window.num0.clicked.connect(partial(num, "0"))
 main_window.dec.clicked.connect(dec)
 
 app.exec()

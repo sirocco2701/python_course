@@ -1,3 +1,3 @@
 Gui calculator
 
-![screenshot](2.png)
+![screenshot](2.PNG)
